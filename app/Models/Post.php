@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $hidden = [];
+    protected $guarded = [];
 
     public function user()
     {

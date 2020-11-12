@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,43 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-Route::resource('admin', AdminController::class)->middleware([
-    CheckAdmin::class,
-]);
+// Route::resource('admin', AdminController::class)->middleware([
+//     'auth:sanctum',
+//     CheckAdmin::class,
+// ]);
+
+Route::group(
+    [
+        'prefix' => 'admin',
+        'as' => 'admin.',
+        'middleware' => ['auth:sanctum', CheckAdmin::class],
+    ],
+    function () {
+        Route::resource('admin', AdminController::class);
+        Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
+            Route::get('/', [PostController::class, 'indexAdmin'])->name(
+                'index'
+            );
+            Route::get('/create', [PostController::class, 'create'])->name(
+                'create'
+            );
+            Route::get('/{post:slug}', [
+                PostController::class,
+                'showAdmin',
+            ])->name('show');
+            Route::get('/{post:slug}/edit', [
+                PostController::class,
+                'editAdmin',
+            ])->name('edit');
+            Route::put('/{post:slug}', [PostController::class, 'update'])->name(
+                'update'
+            );
+        });
+    }
+);
+
+// Route::group(['prefix' => 'admin'], function () {
+//     Route::get('/posts', [PostController::class, 'indexAdmin'])->name(
+//         'admin.posts.index'
+//     );
+// })->middleware();

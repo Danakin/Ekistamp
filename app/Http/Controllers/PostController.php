@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,6 +16,16 @@ class PostController extends Controller
     public function index()
     {
         //
+        $posts = Post::latest()
+            ->where('published', true)
+            ->get();
+        return view('posts.index')->with(['posts' => $posts]);
+    }
+
+    public function indexAdmin()
+    {
+        $posts = Post::latest()->get();
+        return view('admin.posts.index')->with(['posts' => $posts]);
     }
 
     /**
@@ -24,7 +35,15 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        if (
+            !auth()->user() ||
+            auth()
+                ->user()
+                ->cant('create', Post::class)
+        ) {
+            abort(403);
+        }
+        return response()->json(['route' => 'create']);
     }
 
     /**
@@ -35,7 +54,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = $request
+            ->user()
+            ->posts()
+            ->create($request->all());
+        return redirect()->route('posts.show', $post);
     }
 
     /**
@@ -49,6 +72,11 @@ class PostController extends Controller
         //
     }
 
+    public function showAdmin(Post $post)
+    {
+        return view('admin.posts.show', ['post' => $post]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,6 +86,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+    }
+    public function editAdmin(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -70,6 +102,13 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        if ($request->published) {
+            $request['published'] = true;
+        } else {
+            $request['published'] = false;
+        }
+        $post->update($request->all());
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**

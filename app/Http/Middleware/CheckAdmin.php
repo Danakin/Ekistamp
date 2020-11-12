@@ -16,7 +16,8 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()) {
+        $roles = ['admin', 'moderator', 'author'];
+        if (in_array(auth()->user()->role, $roles)) {
             return $next($request);
         }
         return redirect('/');
