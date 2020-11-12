@@ -1,7 +1,7 @@
 @include('partials.header')
 @include('partials.nav')
 
-<div class="container mx-auto p-2">
+<div class="mt-12">
     @yield('content')
 </div>
 

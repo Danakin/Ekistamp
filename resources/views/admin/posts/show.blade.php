@@ -3,6 +3,9 @@
 @section('content')
 <div class="list-none flex flex-col">
     <div class="flex flex-col w-full my-2 items-center" href="{{ route('admin.posts.show', $post) }}">
+        @if($post->image)
+        <img src="{{ Storage::url($post->image) }}" alt="">
+        @endif
         <div class="w-full">
             {{ $post->title }}
         </div>

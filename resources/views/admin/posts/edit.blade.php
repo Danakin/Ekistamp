@@ -3,7 +3,8 @@
 @section('content')
 <div class="list-none flex flex-col">
     @can('update', $post)
-    <form method="post" action="{{ route('admin.posts.update', $post)}}" class="flex flex-col">
+    <form method="post" action="{{ route('admin.posts.update', $post)}}" class="flex flex-col"
+        enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <x-input-text name="title" value="{{ old('title', $post->title)}}">
@@ -16,6 +17,8 @@
         <x-input-checkbox name="published" checked="{{ old('published', $post->published) }}">
             Published
         </x-input-checkbox>
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
         <div class="flex flex-row">
             <button type="submit" class="w-full">Update</button>
             <button type="submit" class="w-full" onclick="submit_delete(event)">Delete</button>

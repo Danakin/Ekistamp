@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\posts\UpdatePost;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -54,15 +57,37 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $path = '';
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $filename =
+                    time() .
+                    '-' .
+                    Str::lower(
+                        str_replace(
+                            ' ',
+                            '_',
+                            $request->image->getClientOriginalName()
+                        )
+                    );
+                $path = $request
+                    ->file('image')
+                    ->storeAs('posts', $filename, 'public');
+                // $request['image']->pathname = $path->getPathname();
+            }
+        }
         if ($request->published) {
             $request['published'] = true;
         } else {
             $request['published'] = false;
         }
-        $post = $request
-            ->user()
-            ->posts()
-            ->create($request->all());
+        $post = Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::user()->id,
+            'image' => $path,
+            'published' => $request->published,
+        ]);
         return redirect()->route('admin.posts.show', $post);
     }
 
@@ -109,16 +134,40 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, Post $post)
     {
         //
-        dd($request->all());
+        $path = '';
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                Storage::disk('public')->delete($post->image);
+                $filename =
+                    time() .
+                    '-' .
+                    Str::lower(
+                        str_replace(
+                            ' ',
+                            '_',
+                            $request->image->getClientOriginalName()
+                        )
+                    );
+                $path = $request
+                    ->file('image')
+                    ->storeAs('posts', $filename, 'public');
+                // $request['image']->pathname = $path->getPathname();
+            }
+        }
         if ($request->published) {
             $request['published'] = true;
         } else {
             $request['published'] = false;
         }
-        $post->update($request->all());
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->published = $request->published;
+        $post->image = $path;
+        $post->save();
+        // dd($post);
         return redirect()->route('admin.posts.show', $post);
     }
 

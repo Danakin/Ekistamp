@@ -1,4 +1,4 @@
-<div x-data="{ showNav: false }"" @resize.window=" showNav=window.innerWidth>= 768 ? false : showNav" class="mb-14">
+<div x-data="{ showNav: false }"" @resize.window=" showNav=window.innerWidth>= 768 ? false : showNav">
     {{-- <nav :class=" {'-translate-x-64': !showNav }" class=" w-64 transform transition-transform duration-200 ease-in-out md:translate-x-0
     bg-gray-800 min-h-screen text-white fixed p-4" id="navigation">
         <div class="font-bold border-b-2 border-gray-200">
