@@ -2,7 +2,9 @@
 @include('admin.partials.nav')
 
 <div class="md:ml-64 p-4">
-    @yield('content')
+    <div class="mx-auto max-w-3xl">
+        @yield('content')
+    </div>
 </div>
 
 @include('admin.partials.footer')

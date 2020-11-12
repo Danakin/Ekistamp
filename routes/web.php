@@ -38,7 +38,7 @@ Route::group(
         'middleware' => ['auth:sanctum', CheckAdmin::class],
     ],
     function () {
-        Route::resource('admin', AdminController::class);
+        Route::resource('', AdminController::class);
         Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
             Route::get('/', [PostController::class, 'indexAdmin'])->name(
                 'index'
