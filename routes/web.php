@@ -58,6 +58,10 @@ Route::group(
             Route::put('/{post:slug}', [PostController::class, 'update'])->name(
                 'update'
             );
+            Route::delete('/{post:slug}', [
+                PostController::class,
+                'destroy',
+            ])->name('destroy');
         });
     }
 );

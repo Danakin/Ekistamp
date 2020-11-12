@@ -16,10 +16,27 @@
         <x-input-checkbox name="published" checked="{{ old('published', $post->published) }}">
             Published
         </x-input-checkbox>
-        <button type="submit">Update</button>
+        <div class="flex flex-row">
+            <button type="submit" class="w-full">Update</button>
+            <button type="submit" class="w-full" onclick="submit_delete(event)">Delete</button>
+        </div>
     </form>
+    @can('delete', $post)
+    <form method="post" action="{{ route('admin.posts.destroy', $post)}}" id="delete-post">
+        @csrf
+        @method('DELETE')
+    </form>
+    <script>
+        function submit_delete(e) {
+            e.preventDefault()
+            const deleteForm = document.getElementById('delete-post');
+            deleteForm.submit();
+        }
+
+    </script>
+    @endcan
     @else
-    NO
+    You are not allowed to edit posts by {{ $post->user->name }}
     @endcan
 </div>
 @endsection

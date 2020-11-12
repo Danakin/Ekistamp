@@ -76,6 +76,13 @@ class PostPolicy
     public function delete(User $user, Post $post)
     {
         //
+        if ($user->role === 'admin' || $user->role === 'moderator') {
+            return true;
+        } elseif ($user->role === 'author') {
+            return $user->id === $post->user_id;
+        } else {
+            return false;
+        }
     }
 
     /**
