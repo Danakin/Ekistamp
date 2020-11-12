@@ -46,6 +46,7 @@ Route::group(
             Route::get('/create', [PostController::class, 'create'])->name(
                 'create'
             );
+            Route::post('/', [PostController::class, 'store'])->name('store');
             Route::get('/{post:slug}', [
                 PostController::class,
                 'showAdmin',

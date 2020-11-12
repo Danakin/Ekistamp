@@ -43,7 +43,7 @@ class PostController extends Controller
         ) {
             abort(403);
         }
-        return response()->json(['route' => 'create']);
+        return view('admin.posts.create');
     }
 
     /**
@@ -54,11 +54,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->published) {
+            $request['published'] = true;
+        } else {
+            $request['published'] = false;
+        }
         $post = $request
             ->user()
             ->posts()
             ->create($request->all());
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
