@@ -1,8 +1,10 @@
-@foreach ($posts as $post)
-{{ $post->title@extends('admin.partials.app')
+@extends('partials.app')
 
 @section('content')
-This is the content
-@endsection
- }}
+@foreach ($posts as $post)
+<article>
+    <h2>{{ $post->title }}</h2>
+    <p>{{ $post->shortdescription }}</p>
+</article>
 @endforeach
+@endsection

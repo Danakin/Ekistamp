@@ -12,6 +12,9 @@ module.exports = {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                ekigreen: "#008D00",
+            },
         },
     },
 

@@ -26,11 +26,6 @@ Route::middleware(['auth:sanctum', 'verified'])
     })
     ->name('dashboard');
 
-// Route::resource('admin', AdminController::class)->middleware([
-//     'auth:sanctum',
-//     CheckAdmin::class,
-// ]);
-
 Route::group(
     [
         'prefix' => 'admin',
@@ -47,27 +42,24 @@ Route::group(
                 'create'
             );
             Route::post('/', [PostController::class, 'store'])->name('store');
-            Route::get('/{post:slug}', [
-                PostController::class,
-                'showAdmin',
-            ])->name('show');
-            Route::get('/{post:slug}/edit', [
+            Route::get('/{post}', [PostController::class, 'showAdmin'])->name(
+                'show'
+            );
+            Route::get('/{post}/edit', [
                 PostController::class,
                 'editAdmin',
             ])->name('edit');
-            Route::put('/{post:slug}', [PostController::class, 'update'])->name(
+            Route::put('/{post}', [PostController::class, 'update'])->name(
                 'update'
             );
-            Route::delete('/{post:slug}', [
-                PostController::class,
-                'destroy',
-            ])->name('destroy');
+            Route::delete('/{post}', [PostController::class, 'destroy'])->name(
+                'destroy'
+            );
         });
     }
 );
 
-// Route::group(['prefix' => 'admin'], function () {
-//     Route::get('/posts', [PostController::class, 'indexAdmin'])->name(
-//         'admin.posts.index'
-//     );
-// })->middleware();
+Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
+    Route::get('/', [PostController::class, 'index'])->name('index');
+    Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+});

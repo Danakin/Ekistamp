@@ -1,4 +1,4 @@
-@include('admin.partials.header')
+@include('partials.header')
 @include('admin.partials.nav')
 
 <div class="md:ml-64 p-4">
@@ -7,4 +7,4 @@
     </div>
 </div>
 
-@include('admin.partials.footer')
+@include('partials.footer')
