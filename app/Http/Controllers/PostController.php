@@ -75,6 +75,11 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        if ($post->published === true) {
+            return view('posts.show', ["post" => $post]);
+        } else {
+            abort(404);
+        }
     }
 
     public function showAdmin(Post $post)
@@ -107,6 +112,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        dd($request->all());
         if ($request->published) {
             $request['published'] = true;
         } else {

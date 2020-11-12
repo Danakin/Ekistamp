@@ -33,6 +33,6 @@ class Post extends Model
         if ($len <= 300) {
             return $this->description;
         }
-        return Str::limit($this->description, 294) . '(...)';
+        return Str::limit($this->description, 294) . ' (...)';
     }
 }

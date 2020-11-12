@@ -21,3 +21,6 @@
 </head>
 
 <body class="font-sans antialiased">
+    <pre>
+        {{ session()->get('error') }}
+    </pre>
