@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Stamp extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function prefecture()
+    {
+        return $this->belongsTo(Prefecture::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(Station::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
