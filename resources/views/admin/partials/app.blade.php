@@ -3,6 +3,7 @@
 
 <div class="md:ml-64 p-4">
     <div class="mx-auto max-w-3xl">
+        @include('partials.error')
         @yield('content')
     </div>
 </div>

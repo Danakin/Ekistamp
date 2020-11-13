@@ -3,8 +3,8 @@
 @section('content')
 <div class="list-none flex flex-col">
     @can('create', 'App\Models\Post')
-    <livewire:image-upload></livewire:image-upload>
-    <form method="post" action="{{ route('admin.posts.store')}}" class="flex flex-col" enctype="multipart/form-data">
+    <livewire:image-upload scope="posts"></livewire:image-upload>
+    <form method="post" action="{{ route('admin.posts.store')}}" class="flex flex-col">
         @csrf
         <x-input-text name="title" value="{{ old('title')}}">
             Title

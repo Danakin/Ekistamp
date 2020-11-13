@@ -28,7 +28,6 @@ class UpdatePost extends FormRequest
         return [
             'title' => ['required', Rule::unique('posts')->ignore($post->id)],
             'description' => ['required'],
-            'image' => ['mimes:jpeg,jpg,png', 'max:2048'],
         ];
     }
 }

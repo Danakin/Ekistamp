@@ -14,6 +14,12 @@ class ImageUpload extends Component
 
     public $uploaded_image;
     public $filename;
+    public $scope;
+
+    public function mount($scope = "")
+    {
+        $this->scope = $scope;
+    }
 
     public function save()
     {
@@ -31,7 +37,7 @@ class ImageUpload extends Component
                 )
             );
         $this->filename = $this->uploaded_image->storeAs(
-            'posts',
+            $this->scope,
             $filename,
             'public'
         );
