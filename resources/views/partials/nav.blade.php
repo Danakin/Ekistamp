@@ -18,7 +18,7 @@
 </nav> --}}
 
 <nav :class="{ 'h-12': !showNav, 'h-auto': showNav }"
-    class="fixed top-0 left-0 right-0 bg-ekigreen flex items-center md:justify-end text-gray-300">
+    class="fixed top-0 left-0 right-0 bg-ekigreen flex items-center md:justify-end text-gray-300 z-10">
     <ul :class="{ 'flex': showNav, 'hidden': !showNav }"
         class="h-full bg-ekigreen md:flex flex-col items-center mt-12 md:mt-0 w-full md:w-auto md:flex-row">
         <a class="w-full md:w-auto h-full flex items-center justify-center hover:bg-green-400 p-4">My Stamps</a>
@@ -28,7 +28,7 @@
     </ul>
 </nav>
 
-<div class="hamburger md:hidden top-0 right-0 mt-3 mr-3 fixed" :class="{ 'active': showNav }"
+<div class="hamburger md:hidden top-0 right-0 mt-3 mr-3 fixed z-20" :class="{ 'active': showNav }"
     @click="showNav = !showNav">
     <div></div>
 </div>
