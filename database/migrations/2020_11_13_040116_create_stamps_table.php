@@ -15,7 +15,8 @@ class CreateStampsTable extends Migration
     {
         Schema::create('stamps', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_eng')->nullable();
+            $table->string('name_jap')->nullable();
             $table->string('image');
             $table->boolean('approved')->default(false);
             $table->unsignedBigInteger('prefecture_id')->index();

@@ -22,7 +22,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '北海道',
             'kana' => 'ほっかいどう',
-            'romaji' => 'hokkaidou',
+            'romaji' => 'Hokkaidou',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -30,7 +30,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '青森県',
             'kana' => 'あおもりけん',
-            'romaji' => 'aomoriken',
+            'romaji' => 'Aomori Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -38,7 +38,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '岩手県',
             'kana' => 'いわてけん',
-            'romaji' => 'iwateken',
+            'romaji' => 'Iwate Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -46,7 +46,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '宮城県',
             'kana' => 'みやぎけん',
-            'romaji' => 'miyagiken',
+            'romaji' => 'Miyagi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -54,7 +54,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '秋田県',
             'kana' => 'あきたけん',
-            'romaji' => 'akitaken',
+            'romaji' => 'Akita Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -62,7 +62,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '山形県',
             'kana' => 'やまがたけん',
-            'romaji' => 'yamagataken',
+            'romaji' => 'Yamagata Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -70,7 +70,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '福島県',
             'kana' => 'ふくしまけん',
-            'romaji' => 'fukushimaken',
+            'romaji' => 'Fukushima Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -78,7 +78,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '茨城県',
             'kana' => 'いばらきけん',
-            'romaji' => 'ibarakiken',
+            'romaji' => 'Ibaraki Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -86,7 +86,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '栃木県',
             'kana' => 'とちぎけん',
-            'romaji' => 'tochigiken',
+            'romaji' => 'Tochigi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -94,7 +94,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '群馬県',
             'kana' => 'ぐんまけん',
-            'romaji' => 'gunmaken',
+            'romaji' => 'Gunma Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -102,7 +102,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '埼玉県',
             'kana' => 'さいたまけん',
-            'romaji' => 'saitamaken',
+            'romaji' => 'Saitama Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -110,7 +110,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '千葉県',
             'kana' => 'ちばけん',
-            'romaji' => 'chibaken',
+            'romaji' => 'Chiba Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -118,7 +118,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '東京都',
             'kana' => 'とうきょうと',
-            'romaji' => 'toukyouto',
+            'romaji' => 'Toukyouto',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -126,7 +126,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '神奈川県',
             'kana' => 'かながわけん',
-            'romaji' => 'kanagawaken',
+            'romaji' => 'Kanagawa Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -134,7 +134,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '新潟県',
             'kana' => 'にいがたけん',
-            'romaji' => 'niigataken',
+            'romaji' => 'Niigata Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -142,7 +142,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '富山県',
             'kana' => 'とやまけん',
-            'romaji' => 'toyamaken',
+            'romaji' => 'Toyama Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -150,7 +150,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '石川県',
             'kana' => 'いしかわけん',
-            'romaji' => 'ishikawaken',
+            'romaji' => 'Ishikawa Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -158,7 +158,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '福井県',
             'kana' => 'ふくいけん',
-            'romaji' => 'fukuiken',
+            'romaji' => 'Fukui Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -166,7 +166,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '山梨県',
             'kana' => 'やまなしけん',
-            'romaji' => 'yamanashiken',
+            'romaji' => 'Yamanashi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -174,7 +174,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '長野県',
             'kana' => 'ながのけん',
-            'romaji' => 'naganoken',
+            'romaji' => 'Nagano Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -182,7 +182,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '岐阜県',
             'kana' => 'ぎふけん',
-            'romaji' => 'gifuken',
+            'romaji' => 'Gifu Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -190,7 +190,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '静岡県',
             'kana' => 'しずおかけん',
-            'romaji' => 'shizuokaken',
+            'romaji' => 'Shizuoka Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -198,7 +198,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '愛知県',
             'kana' => 'あいちけん',
-            'romaji' => 'aichiken',
+            'romaji' => 'Aichi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -206,7 +206,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '三重県',
             'kana' => 'みえけん',
-            'romaji' => 'mieken',
+            'romaji' => 'Mie Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -214,7 +214,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '滋賀県',
             'kana' => 'しがけん',
-            'romaji' => 'shigaken',
+            'romaji' => 'Shiga Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -222,7 +222,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '京都府',
             'kana' => 'きょうとふ',
-            'romaji' => 'kyoutofu',
+            'romaji' => 'Kyoutofu',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -230,7 +230,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '大阪府',
             'kana' => 'おおさかふ',
-            'romaji' => 'oosakafu',
+            'romaji' => 'Oosakafu',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -238,7 +238,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '兵庫県',
             'kana' => 'ひょうごけん',
-            'romaji' => 'hyougoken',
+            'romaji' => 'Hyougo Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -246,7 +246,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '奈良県',
             'kana' => 'ならけん',
-            'romaji' => 'naraken',
+            'romaji' => 'Nara Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -254,7 +254,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '和歌山県',
             'kana' => 'わかやまけん',
-            'romaji' => 'wakayamaken',
+            'romaji' => 'Wakayama Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -262,7 +262,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '鳥取県',
             'kana' => 'とっとりけん',
-            'romaji' => 'tottoriken',
+            'romaji' => 'Tottori Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -270,7 +270,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '島根県',
             'kana' => 'しまねけん',
-            'romaji' => 'shimaneken',
+            'romaji' => 'Shimane Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -278,7 +278,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '岡山県',
             'kana' => 'おかやまけん',
-            'romaji' => 'okayamaken',
+            'romaji' => 'Okayama Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -286,7 +286,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '広島県',
             'kana' => 'こうしまけん',
-            'romaji' => 'koushimaken',
+            'romaji' => 'Koushima Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -294,7 +294,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '山口県',
             'kana' => 'やまぐちけん',
-            'romaji' => 'yamaguchiken',
+            'romaji' => 'Yamaguchi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -302,7 +302,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '徳島県',
             'kana' => 'とくしまけん',
-            'romaji' => 'tokushimaken',
+            'romaji' => 'Tokushima Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -310,7 +310,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '香川県',
             'kana' => 'かがわけん',
-            'romaji' => 'kagawaken',
+            'romaji' => 'Kagawa Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -318,7 +318,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '愛媛県',
             'kana' => 'えひめけん',
-            'romaji' => 'ehimeken',
+            'romaji' => 'Ehime Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -326,7 +326,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '高知県',
             'kana' => 'こうちけん',
-            'romaji' => 'kouchiken',
+            'romaji' => 'Kouchi Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -334,7 +334,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '福岡県',
             'kana' => 'ふくおかけん',
-            'romaji' => 'fukuokaken',
+            'romaji' => 'Fukuoka Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -342,7 +342,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '佐賀県',
             'kana' => 'さがけん',
-            'romaji' => 'sagaken',
+            'romaji' => 'Saga Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -350,7 +350,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '長崎県',
             'kana' => 'ながさきけん',
-            'romaji' => 'nagasakiken',
+            'romaji' => 'Nagasaki Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -358,7 +358,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '熊本県',
             'kana' => 'くまもとけん',
-            'romaji' => 'kumamotoken',
+            'romaji' => 'Kumamoto Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -366,7 +366,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '大分県',
             'kana' => 'おおいたけん',
-            'romaji' => 'ooitaken',
+            'romaji' => 'Ooita Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -374,7 +374,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '宮崎県',
             'kana' => 'みやざきけん',
-            'romaji' => 'miyazakiken',
+            'romaji' => 'Miyazaki Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -382,7 +382,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '鹿児島県',
             'kana' => 'かごしまけん',
-            'romaji' => 'kagoshimaken',
+            'romaji' => 'Kagoshima Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -390,7 +390,7 @@ class PrefectureSeeder extends Seeder
         Prefecture::insert([
             'kanji' => '沖縄県',
             'kana' => 'おきなわけん',
-            'romaji' => 'okinawaken',
+            'romaji' => 'Okinawa Prefecture',
             'created_at' => $date,
             'updated_at' => $date,
         ]);

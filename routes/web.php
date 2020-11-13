@@ -68,8 +68,17 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
 
 Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
     Route::get('/', Stamps\Index::class)->name('index');
+    Route::get('/', Stamps\Index::class)->name('index');
     Route::get('/create/{prefecture}/{city}/{station}', [
         StampController::class,
         'create',
     ])->name('create');
+    Route::post('/{prefecture}/{city}/{station}', [
+        StampController::class,
+        'store',
+    ])->name('store');
+    Route::get('/{prefecture}/{city}/{station}/{stamp}', [
+        StampController::class,
+        'show',
+    ])->name('show');
 });
