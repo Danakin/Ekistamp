@@ -30,5 +30,11 @@ class DatabaseSeeder extends Seeder
             ->each(function ($user) {
                 $user->posts()->saveMany(Post::factory(3)->make());
             });
+
+        $this->call([
+            PrefectureSeeder::class,
+            CitySeeder::class,
+            StationSeeder::class,
+        ]);
     }
 }

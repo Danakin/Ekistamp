@@ -27,7 +27,7 @@ class CreateStampUserTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('CASCADE');
-            $table->unique(['user_id', 'station_id']); // User can only have a stamp once
+            $table->unique(['user_id', 'stamp_id']); // User can only have a stamp once
             $table->timestamps();
         });
     }
