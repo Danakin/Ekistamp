@@ -1,8 +1,8 @@
 @include('partials.header')
 @include('partials.nav')
 
-<div class="mt-12">
+<main class="mt-12">
     @yield('content')
-</div>
+</main>
 
 @include('partials.footer')

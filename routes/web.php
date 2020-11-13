@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\StampController;
+use App\Http\Livewire\Stamps;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -62,4 +64,12 @@ Route::group(
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+});
+
+Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
+    Route::get('/', Stamps\Index::class)->name('index');
+    Route::get('/create/{prefecture}/{city}/{station}', [
+        StampController::class,
+        'create',
+    ])->name('create');
 });
