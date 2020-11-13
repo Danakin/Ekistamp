@@ -72,11 +72,15 @@ Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
     Route::get('/create/{prefecture}/{city}/{station}', [
         StampController::class,
         'create',
-    ])->name('create');
+    ])
+        ->name('create')
+        ->middleware('auth:sanctum');
     Route::post('/{prefecture}/{city}/{station}', [
         StampController::class,
         'store',
-    ])->name('store');
+    ])
+        ->name('store')
+        ->middleware('auth:sanctum');
     Route::get('/{prefecture}/{city}/{station}/{stamp}', [
         StampController::class,
         'show',

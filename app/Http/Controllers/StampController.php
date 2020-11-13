@@ -47,16 +47,16 @@ class StampController extends Controller
         City $city,
         Station $station
     ) {
-        dd($request, $prefecture, $city, $station);
         $stamp = new Stamp();
         $stamp->prefecture_id = $prefecture->id;
         $stamp->city_id = $city->id;
         $stamp->station_id = $station->id;
+        $stamp->user_id = auth()->user()->id;
         $stamp->name_eng = $request->name_eng;
         $stamp->name_jap = $request->name_jap;
         $stamp->image = $request->image;
         $stamp->save();
-        return redirect()->route('stamp.show', [
+        return redirect()->route('stamps.show', [
             $prefecture,
             $city,
             $station,
@@ -70,9 +70,26 @@ class StampController extends Controller
      * @param  \App\Models\Stamp  $stamp
      * @return \Illuminate\Http\Response
      */
-    public function show(Stamp $stamp)
-    {
-        //
+    public function show(
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        if (
+            $stamp->approved ||
+            $stamp->user_id === auth()->user()->id ||
+            auth()->user()->role != 'user'
+        ) {
+            return view('stamps.show')->with([
+                'prefecture' => $prefecture,
+                'city' => $city,
+                'station' => $station,
+                'stamp' => $stamp,
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     /**

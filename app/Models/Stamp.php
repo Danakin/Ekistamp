@@ -26,6 +26,11 @@ class Stamp extends Model
         return $this->belongsTo(Station::class);
     }
 
+    public function submitted_by()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);

@@ -19,6 +19,12 @@ class CreateStampsTable extends Migration
             $table->string('name_jap')->nullable();
             $table->string('image');
             $table->boolean('approved')->default(false);
+            $table->unsignedBigInteger('user_id')->index();
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('CASCADE');
             $table->unsignedBigInteger('prefecture_id')->index();
             $table
                 ->foreign('prefecture_id')

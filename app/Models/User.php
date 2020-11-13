@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function submitted_stamps()
+    {
+        return $this->hasMany(Stamp::class);
+    }
+
     public function stamps()
     {
         return $this->belongsToMany(Stamp::class);
