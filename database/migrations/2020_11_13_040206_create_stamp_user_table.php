@@ -15,6 +15,18 @@ class CreateStampUserTable extends Migration
     {
         Schema::create('stamp_user', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('stamp_id')->index();
+            $table
+                ->foreign('stamp_id')
+                ->references('id')
+                ->on('stamps')
+                ->onDelete('CASCADE');
+            $table->unsignedBigInteger('user_id')->index();
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('CASCADE');
             $table->timestamps();
         });
     }

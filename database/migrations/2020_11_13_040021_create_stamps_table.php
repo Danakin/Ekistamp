@@ -15,6 +15,27 @@ class CreateStampsTable extends Migration
     {
         Schema::create('stamps', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('image');
+            $table->boolean('approved')->default(false);
+            $table->unsignedBigInteger('prefecture_id')->index();
+            $table
+                ->foreign('prefecture_id')
+                ->references('id')
+                ->on('prefectures')
+                ->onDelete('CASCADE');
+            $table->unsignedBigInteger('city_id')->index();
+            $table
+                ->foreign('city_id')
+                ->references('id')
+                ->on('cities')
+                ->onDelete('CASCADE');
+            $table->unsignedBigInteger('station_id')->index();
+            $table
+                ->foreign('station_id')
+                ->references('id')
+                ->on('stations')
+                ->onDelete('CASCADE');
             $table->timestamps();
         });
     }

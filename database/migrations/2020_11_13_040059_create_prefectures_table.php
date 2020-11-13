@@ -15,6 +15,9 @@ class CreatePrefecturesTable extends Migration
     {
         Schema::create('prefectures', function (Blueprint $table) {
             $table->id();
+            $table->string('romaji');
+            $table->string('kana');
+            $table->string('kanji');
             $table->timestamps();
         });
     }

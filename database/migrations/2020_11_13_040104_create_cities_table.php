@@ -15,6 +15,15 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->string('romaji');
+            $table->string('kana');
+            $table->string('kanji');
+            $table->unsignedBigInteger('prefecture_id')->index();
+            $table
+                ->foreign('prefecture_id')
+                ->references('id')
+                ->on('prefectures')
+                ->onDelete('CASCADE');
             $table->timestamps();
         });
     }
