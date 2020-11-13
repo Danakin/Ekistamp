@@ -3,6 +3,7 @@
 @section('content')
 <div class="list-none flex flex-col">
     @can('update', $post)
+    <livewire:image-upload></livewire:image-upload>
     <form method="post" action="{{ route('admin.posts.update', $post)}}" class="flex flex-col"
         enctype="multipart/form-data">
         @csrf

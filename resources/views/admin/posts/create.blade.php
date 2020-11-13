@@ -3,6 +3,7 @@
 @section('content')
 <div class="list-none flex flex-col">
     @can('create', 'App\Models\Post')
+    <livewire:image-upload></livewire:image-upload>
     <form method="post" action="{{ route('admin.posts.store')}}" class="flex flex-col" enctype="multipart/form-data">
         @csrf
         <x-input-text name="title" value="{{ old('title')}}">
@@ -15,12 +16,20 @@
         <x-input-checkbox name="published" checked="{{ old('published') }}">
             Published
         </x-input-checkbox>
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image">
+        <input type="hidden" id="image" name="image">
         <button type="submit">Post</button>
     </form>
     @else
     NO
     @endcan
 </div>
+
+<script>
+    const filename = document.getElementById('filename')
+    const image = document.getElementById('image')
+
+    function setFilename(event) {
+        image.value = filename.value
+    }
+</script>
 @endsection

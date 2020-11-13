@@ -57,25 +57,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $path = '';
-        if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                $filename =
-                    time() .
-                    '-' .
-                    Str::lower(
-                        str_replace(
-                            ' ',
-                            '_',
-                            $request->image->getClientOriginalName()
-                        )
-                    );
-                $path = $request
-                    ->file('image')
-                    ->storeAs('posts', $filename, 'public');
-                // $request['image']->pathname = $path->getPathname();
-            }
-        }
         if ($request->published) {
             $request['published'] = true;
         } else {
@@ -85,7 +66,7 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => Auth::user()->id,
-            'image' => $path,
+            'image' => $request->image,
             'published' => $request->published,
         ]);
         return redirect()->route('admin.posts.show', $post);
@@ -137,26 +118,6 @@ class PostController extends Controller
     public function update(UpdatePost $request, Post $post)
     {
         //
-        $path = '';
-        if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                Storage::disk('public')->delete($post->image);
-                $filename =
-                    time() .
-                    '-' .
-                    Str::lower(
-                        str_replace(
-                            ' ',
-                            '_',
-                            $request->image->getClientOriginalName()
-                        )
-                    );
-                $path = $request
-                    ->file('image')
-                    ->storeAs('posts', $filename, 'public');
-                // $request['image']->pathname = $path->getPathname();
-            }
-        }
         if ($request->published) {
             $request['published'] = true;
         } else {
@@ -165,7 +126,10 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->published = $request->published;
-        $post->image = $path;
+        if ($request->image && $request->image !== $post->image) {
+            Storage::disk('public')->delete($post->image);
+            $post->image = $request->image;
+        }
         $post->save();
         // dd($post);
         return redirect()->route('admin.posts.show', $post);
