@@ -21,6 +21,27 @@ class StampController extends Controller
         return view('stamps.index', compact('stamps'));
     }
 
+    public function indexAdmin()
+    {
+        $stamps = Stamp::orderBy('prefecture_id')
+            ->orderBy('city_id')
+            ->orderBy('station_id')
+            ->orderBy('id')
+            ->get();
+        return view('admin.stamps.index', compact('stamps'));
+    }
+
+    public function indexAdminUnapproved()
+    {
+        $stamps = Stamp::where('approved', false)
+            ->orderBy('prefecture_id')
+            ->orderBy('city_id')
+            ->orderBy('station_id')
+            ->orderBy('id')
+            ->get();
+        return view('admin.stamps.index', compact('stamps'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,6 +51,19 @@ class StampController extends Controller
     {
         //
         return view('stamps.create')->with([
+            'prefecture' => $prefecture,
+            'city' => $city,
+            'station' => $station,
+        ]);
+    }
+
+    public function createAdmin(
+        Prefecture $prefecture,
+        City $city,
+        Station $station
+    ) {
+        //
+        return view('admin.stamps.create')->with([
             'prefecture' => $prefecture,
             'city' => $city,
             'station' => $station,
@@ -92,6 +126,20 @@ class StampController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function showAdmin(
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        return view('admin.stamps.show')->with([
+            'prefecture' => $prefecture,
+            'city' => $city,
+            'station' => $station,
+            'stamp' => $stamp,
+        ]);
     }
 
     /**

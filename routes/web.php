@@ -58,6 +58,23 @@ Route::group(
                 'destroy'
             );
         });
+        Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
+            Route::get('/', [StampController::class, 'indexAdmin'])->name(
+                'index'
+            );
+            Route::get('/unapproved', [
+                StampController::class,
+                'indexAdminUnapproved',
+            ])->name('index.unapproved');
+            Route::get('/create', [
+                StampController::class,
+                'createAdmin',
+            ])->name('create');
+            Route::get('/{prefecture}/{city}/{station}/{stamp}', [
+                StampController::class,
+                'showAdmin',
+            ])->name('show');
+        });
     }
 );
 
