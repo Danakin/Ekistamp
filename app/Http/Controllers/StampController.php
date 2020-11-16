@@ -80,7 +80,8 @@ class StampController extends Controller
         if (
             $stamp->approved ||
             $stamp->user_id === auth()->user()->id ||
-            auth()->user()->role != 'user'
+            auth()->user()->role === 'admin' ||
+            auth()->user()->role === 'moderator'
         ) {
             return view('stamps.show')->with([
                 'prefecture' => $prefecture,

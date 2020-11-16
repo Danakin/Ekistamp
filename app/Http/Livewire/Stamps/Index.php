@@ -60,7 +60,10 @@ class Index extends Component
             })
             ->first();
 
-        $this->stamps = $this->selected_station->stamps;
+        $this->stamps = $this->selected_station->stamps->where(
+            'approved',
+            true
+        );
     }
 
     public function render()
