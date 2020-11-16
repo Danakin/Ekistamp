@@ -100,6 +100,38 @@ class StampController extends Controller
         ]);
     }
 
+    public function storeAdmin(
+        Request $request,
+        Prefecture $prefecture,
+        City $city,
+        Station $station
+    ) {
+        $request->validate([
+            'prefecture_id' => "gt:0",
+            'city_id' => "gt:0",
+            'station_id' => "gt:0",
+            'name_eng' => "string",
+            'name_jap' => "string",
+            'image' => "string",
+        ]);
+        $stamp = new Stamp();
+        $stamp->prefecture_id = $request->prefecture_id;
+        $stamp->city_id = $request->city_id;
+        $stamp->station_id = $request->station_id;
+        $stamp->user_id = auth()->user()->id;
+        $stamp->name_eng = $request->name_eng;
+        $stamp->name_jap = $request->name_jap;
+        $stamp['approved'] = $request->approved ? true : false;
+        $stamp->image = $request->image;
+        $stamp->save();
+        return redirect()->route('admin.stamps.show', [
+            $request->prefecture_id,
+            $request->city_id,
+            $request->station_id,
+            $stamp,
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

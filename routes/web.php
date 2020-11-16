@@ -69,6 +69,9 @@ Route::group(
                 StampController::class,
                 'createAdmin',
             ])->name('create');
+            Route::post('/', [StampController::class, 'storeAdmin'])->name(
+                'store'
+            );
             Route::get('/{prefecture}/{city}/{station}/{stamp}', [
                 StampController::class,
                 'showAdmin',
