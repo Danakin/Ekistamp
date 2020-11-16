@@ -20,22 +20,13 @@
         <input type="hidden" id="image" name="image" value="{{ old('image', $post->image) }}">
         <div class=" flex flex-row">
             <button type="submit" class="w-full">Update</button>
+            @can('delete', $post)
             <button type="submit" class="w-full" onclick="submit_delete(event)">Delete</button>
+            @endcan
         </div>
     </form>
     @can('delete', $post)
-    <form method="post" action="{{ route('admin.posts.destroy', $post)}}" id="delete-post">
-        @csrf
-        @method('DELETE')
-    </form>
-    <script>
-        function submit_delete(e) {
-            e.preventDefault()
-            const deleteForm = document.getElementById('delete-post');
-            deleteForm.submit();
-        }
-
-    </script>
+    @include('admin.partials.deleteform', ['route' => 'admin.posts.destroy', 'target' => $post])
     @endcan
     @else
     You are not allowed to edit posts by {{ $post->user->name }}

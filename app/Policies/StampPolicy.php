@@ -71,6 +71,10 @@ class StampPolicy
     public function delete(User $user, Stamp $stamp)
     {
         //
+        if ($user->role === 'admin' || $user->role === 'moderator') {
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -237,8 +237,24 @@ class StampController extends Controller
      * @param  \App\Models\Stamp  $stamp
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stamp $stamp)
-    {
-        //
+    public function destroy(
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        Storage::disk('public')->delete($stamp->image);
+
+        Stamp::where([
+            'prefecture_id' => $prefecture->id,
+            'city_id' => $city->id,
+            'station_id' => $station->id,
+            'id' => $stamp->id,
+        ])
+            ->first()
+            ->delete();
+        return redirect()
+            ->route('admin.stamps.index')
+            ->with('success', 'Stamps deleted successfully');
     }
 }

@@ -84,6 +84,10 @@ Route::group(
                 StampController::class,
                 'update',
             ])->name('update');
+            Route::delete('/{prefecture}/{city}/{station}/{stamp}', [
+                StampController::class,
+                'destroy',
+            ])->name('destroy');
         });
     }
 );
