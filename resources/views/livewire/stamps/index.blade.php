@@ -41,7 +41,12 @@
 
     @if($stamps)
     @if(count($stamps) > 0)
-    {{ $stamps }})
+    <section class="mt-4 flex flex-col">
+        @foreach($stamps as $stamp)
+        <a
+            href="{{ route('stamps.show', [$selected_prefecture, $selected_city, $selected_station, $stamp]) }}">{{ $stamp->name_eng }}</a>
+        @endforeach
+    </section>
     @else
     No stamps
     @endif

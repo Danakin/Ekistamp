@@ -14,7 +14,7 @@
     </h2>
     <article>
         <img src="{{ Storage::url($stamp->image) }}" alt="Stamp {{ $stamp->name_eng }}">
-        <livewire:own-stamp></livewire:own-stamp>
+        <livewire:own-stamp :stamp="$stamp"></livewire:own-stamp>
     </article>
 </section>
 @endsection

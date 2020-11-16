@@ -1,4 +1,3 @@
 <div>
-    I have this stamp: {{ $owned }}
-    <button wire:click="own">Own this stamp</button>
+    I have this stamp: <button wire:click="own({{ $stamp->id }})">{{ $owned ? '❤' : '🤍' }}</button>
 </div>

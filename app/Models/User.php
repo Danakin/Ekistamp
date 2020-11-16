@@ -65,6 +65,10 @@ class User extends Authenticatable
 
     public function stamps()
     {
-        return $this->belongsToMany(Stamp::class);
+        return $this->belongsToMany(Stamp::class)
+            ->orderBy('prefecture_id', 'asc')
+            ->orderBy('city_id')
+            ->orderBy('station_id')
+            ->orderBy('stamp_id');
     }
 }

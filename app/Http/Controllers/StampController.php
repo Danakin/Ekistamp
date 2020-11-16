@@ -17,7 +17,8 @@ class StampController extends Controller
      */
     public function index()
     {
-        //
+        $stamps = auth()->user()->stamps;
+        return view('stamps.index', compact('stamps'));
     }
 
     /**

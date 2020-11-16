@@ -68,6 +68,7 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
 
 Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
     Route::get('/', Stamps\Index::class)->name('index');
+    Route::get('/my', [StampController::class, 'index'])->name('my');
     Route::get('/', Stamps\Index::class)->name('index');
     Route::get('/create/{prefecture}/{city}/{station}', [
         StampController::class,

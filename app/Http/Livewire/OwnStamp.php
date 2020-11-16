@@ -2,18 +2,38 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Stamp;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class OwnStamp extends Component
 {
     public $owned;
+    public Stamp $stamp;
 
-    public function mount()
+    public function mount($stamp)
     {
-        $this->owned = auth()->user()->stamps;
+        $owned = auth()
+            ->user()
+            ->stamps->find($stamp->id);
+        if ($owned) {
+            $this->owned = true;
+        } else {
+            $this->owned = false;
+        }
+        $this->stamp = $stamp;
+        $this->users = $stamp->users;
     }
 
-    public function
+    public function own($stamp_id)
+    {
+        auth()
+            ->user()
+            ->stamps()
+            ->toggle($stamp_id);
+
+        $this->owned = !$this->owned;
+    }
 
     public function render()
     {
