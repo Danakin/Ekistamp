@@ -73,6 +73,14 @@ Route::group(
                 StampController::class,
                 'showAdmin',
             ])->name('show');
+            Route::get('/{prefecture}/{city}/{station}/{stamp}/edit', [
+                StampController::class,
+                'edit',
+            ])->name('edit');
+            Route::put('/{prefecture}/{city}/{station}/{stamp}', [
+                StampController::class,
+                'update',
+            ])->name('update');
         });
     }
 );

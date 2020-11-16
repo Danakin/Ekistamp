@@ -17,7 +17,7 @@ class CreateStampsTable extends Migration
             $table->id();
             $table->string('name_eng')->nullable();
             $table->string('name_jap')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('approved')->default(false);
             $table->unsignedBigInteger('user_id')->index();
             $table

@@ -55,6 +55,10 @@ class StampPolicy
     public function update(User $user, Stamp $stamp)
     {
         //
+        if ($user->role === 'admin' || $user->role === 'moderator') {
+            return true;
+        }
+        return false;
     }
 
     /**

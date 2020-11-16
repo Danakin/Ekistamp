@@ -17,8 +17,8 @@
         <x-input-checkbox name="published" checked="{{ old('published', $post->published) }}">
             Published
         </x-input-checkbox>
-        <input type="hidden" id="image" name="image">
-        <div class="flex flex-row">
+        <input type="hidden" id="image" name="image" value="{{ old('image', $post->image) }}">
+        <div class=" flex flex-row">
             <button type="submit" class="w-full">Update</button>
             <button type="submit" class="w-full" onclick="submit_delete(event)">Delete</button>
         </div>

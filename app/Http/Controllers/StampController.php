@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Station;
 use App\Models\Stamp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StampController extends Controller
 {
@@ -148,9 +149,19 @@ class StampController extends Controller
      * @param  \App\Models\Stamp  $stamp
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stamp $stamp)
-    {
+    public function edit(
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
         //
+        return view('admin.stamps.edit')->with([
+            'prefecture' => $prefecture,
+            'city' => $city,
+            'station' => $station,
+            'stamp' => $stamp,
+        ]);
     }
 
     /**
@@ -160,9 +171,32 @@ class StampController extends Controller
      * @param  \App\Models\Stamp  $stamp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stamp $stamp)
-    {
-        //
+    public function update(
+        Request $request,
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        if ($request->approved) {
+            $request['approved'] = true;
+        } else {
+            $request['approved'] = false;
+        }
+        $stamp->name_eng = $request->name_eng;
+        $stamp->name_jap = $request->name_jap;
+        $stamp->approved = $request->approved;
+        if ($request->image && $request->image !== $stamp->image) {
+            Storage::disk('public')->delete($stamp->image);
+            $stamp->image = $request->image;
+        }
+        $stamp->save();
+        return redirect()->route('admin.stamps.show', [
+            $prefecture,
+            $city,
+            $station,
+            $stamp,
+        ]);
     }
 
     /**

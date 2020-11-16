@@ -16,7 +16,7 @@
                 <label for="uploaded_image">Image</label>
                 <input type="file" name="uploaded_image" id="uploaded_image" wire:model="uploaded_image">
                 <input type="hidden" id="filename" name="filename" wire:model="filename"
-                    :change="document.getElementById('image').value = filename.value">
+                    :change="filename.value !== '' ? document.getElementById('image').value = filename.value : ''">
                 <button type="submit">Save Image</button>
                 @if ($uploaded_image)
                 <p>
