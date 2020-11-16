@@ -38,7 +38,7 @@ class StampController extends Controller
             ->orderBy('city_id')
             ->orderBy('station_id')
             ->orderBy('id')
-            ->paginate(30);
+            ->paginate(3);
         return view('admin.stamps.index', compact('stamps'));
     }
 

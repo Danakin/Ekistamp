@@ -1,10 +1,37 @@
 <div>
-    <select name="prefecture" id="prefecture" wire:model="selected_prefecture_id">
-        <option value="0">---</option>
-        @foreach ($prefectures as $prefecture)
-        <option value="{{ $prefecture->id }}">{{ $prefecture->kanji }} - {{ $prefecture->romaji }}</option>
-        @endforeach
-    </select>
+    <div class="flex flex-col">
+        <label class="w-full" for="prefecture">Prefecture</label>
+        <select
+            class="w-full border-2 rounded-md border-gray-200 focus:outline-none focus:shadow-outline focus:border-blue-400 p-2 "
+            name="prefecture" id="prefecture" wire:model="selected_prefecture_id" wire:change="load_cities">
+            <option value="0">---</option>
+            @foreach ($prefectures as $prefecture)
+            <option value="{{ $prefecture->id }}">{{ $prefecture->kanji }} - {{ $prefecture->romaji }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="flex flex-col">
+        <label class="w-full" for="city">City</label>
+        <select
+            class="w-full border-2 rounded-md border-gray-200 focus:outline-none focus:shadow-outline focus:border-blue-400 p-2 "
+            name="city" id="city" wire:model="selected_city_id" wire:change="load_stations">
+            <option value="0">---</option>
+            @foreach ($cities as $city)
+            <option value="{{ $city->id }}">{{ $city->kanji }} - {{ $city->romaji }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="flex flex-col">
+        <label class="w-full" for="station">Station</label>
+        <select
+            class="w-full border-2 rounded-md border-gray-200 focus:outline-none focus:shadow-outline focus:border-blue-400 p-2 "
+            name="station" id="station" wire:model="selected_station_id">
+            <option value="0">---</option>
+            @foreach ($stations as $station)
+            <option value="{{ $station->id }}">{{ $station->kanji }} - {{ $station->romaji }}</option>
+            @endforeach
+        </select>
+    </div>
 
     <div class="list-none flex flex-col">
         @foreach ($stamps as $stamp)
