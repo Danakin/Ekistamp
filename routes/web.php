@@ -143,6 +143,9 @@ Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
                 CommentController::class,
                 'createStamp',
             ])->name('create');
+            Route::post('/', [CommentController::class, 'storeStamp'])
+                ->name('store')
+                ->middleware('auth:sanctum');
         }
     );
 });

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Prefecture;
+use App\Models\City;
+use App\Models\Station;
+use App\Models\Stamp;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -33,6 +37,20 @@ class CommentController extends Controller
             'type' => Post::class,
         ]);
     }
+    public function createStamp(
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        //
+        return view('comments.create', [
+            'id' => $stamp->id,
+            'route' => 'stamps.comments.store',
+            'args' => [$prefecture, $city, $station, $stamp],
+            'type' => Stamp::class,
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,6 +76,36 @@ class CommentController extends Controller
 
             $comment = Comment::create($request->all());
             return redirect()->route('posts.show', $post);
+        }
+    }
+    public function storeStamp(
+        Request $request,
+        Prefecture $prefecture,
+        City $city,
+        Station $station,
+        Stamp $stamp
+    ) {
+        //
+        if (
+            auth()
+                ->user()
+                ->can('create', Comment::class)
+        ) {
+            $request->validate([
+                'commentable_id' => 'required|integer',
+                'commentable_type' => 'required|string',
+                'title' => 'required|string',
+                'description' => 'required|string',
+            ]);
+            $request['user_id'] = auth()->user()->id;
+
+            $comment = Comment::create($request->all());
+            return redirect()->route('stamps.show', [
+                $prefecture,
+                $city,
+                $station,
+                $stamp,
+            ]);
         }
     }
 
