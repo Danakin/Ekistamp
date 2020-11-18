@@ -20,4 +20,14 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function posts()
+    {
+        return $this->morphedByMany(Post::class, 'commentable');
+    }
+
+    public function stamps()
+    {
+        return $this->morphedByMany(Stamp::class, 'commentable');
+    }
 }

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/dashboard', function () {
@@ -93,6 +93,15 @@ Route::group(
     }
 );
 
+Route::get('/comments/{model}/{id}/create', [
+    CommentController::class,
+    'create',
+])
+    ->name('comments.create')
+    ->where('model', '(posts|stamps)');
+Route::post('/comments/{model}/{id}', [CommentController::class, 'store'])
+    ->name('comments.store')
+    ->where('model', '(posts|stamps)');
 Route::get('/comments/{comment}/edit', [
     CommentController::class,
     'edit',

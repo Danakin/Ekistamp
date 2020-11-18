@@ -3,10 +3,8 @@
 @section('content')
 <section class="divide-green-100 divide-y-2 container mx-auto">
     @can('create', 'App\Models\Comment')
-    <form action="{{ route($route, $args) }}" method="POST" class="flex flex-col">
+    <form action="{{ route('comments.store', [$model, $id]) }}" method="POST" class="flex flex-col">
         @csrf
-        <input type="hidden" name="commentable_id" id="commentable_id" value="{{ $id }}">
-        <input type="hidden" name="commentable_type" id="commentable_type" value="{{ $type }}">
         <x-input-text name="title" value="{{ old('title') }}">
             Title
         </x-input-text>

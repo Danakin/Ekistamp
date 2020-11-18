@@ -8,6 +8,7 @@ use App\Models\Prefecture;
 use App\Models\City;
 use App\Models\Station;
 use App\Models\Stamp;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -27,29 +28,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createPost(Post $post)
+    public function create($model, $id)
     {
-        //
-        return view('comments.create', [
-            'id' => $post->id,
-            'route' => 'posts.comments.store',
-            'args' => $post,
-            'type' => Post::class,
-        ]);
-    }
-    public function createStamp(
-        Prefecture $prefecture,
-        City $city,
-        Station $station,
-        Stamp $stamp
-    ) {
-        //
-        return view('comments.create', [
-            'id' => $stamp->id,
-            'route' => 'stamps.comments.store',
-            'args' => [$prefecture, $city, $station, $stamp],
-            'type' => Stamp::class,
-        ]);
+        return view('comments.create', ['model' => $model, 'id' => $id]);
     }
 
     /**
@@ -58,55 +39,28 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storePost(Request $request, Post $post)
+    public function store(Request $request, $model, $id)
     {
-        //
-        if (
-            auth()
-                ->user()
-                ->can('create', Comment::class)
-        ) {
-            $request->validate([
-                'commentable_id' => 'required|integer',
-                'commentable_type' => 'required|string',
-                'title' => 'required|string',
-                'description' => 'required|string',
-            ]);
-            $request['user_id'] = auth()->user()->id;
-
-            $comment = Comment::create($request->all());
+        $comment = new Comment([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id,
+        ]);
+        if ($model === 'posts') {
+            $post = Post::find($id);
+            $post->comments()->save($comment);
             return redirect()->route('posts.show', $post);
-        }
-    }
-    public function storeStamp(
-        Request $request,
-        Prefecture $prefecture,
-        City $city,
-        Station $station,
-        Stamp $stamp
-    ) {
-        //
-        if (
-            auth()
-                ->user()
-                ->can('create', Comment::class)
-        ) {
-            $request->validate([
-                'commentable_id' => 'required|integer',
-                'commentable_type' => 'required|string',
-                'title' => 'required|string',
-                'description' => 'required|string',
-            ]);
-            $request['user_id'] = auth()->user()->id;
-
-            $comment = Comment::create($request->all());
+        } elseif ($model === 'stamps') {
+            $stamp = Stamp::find($id);
+            $stamp->comments()->save($comment);
             return redirect()->route('stamps.show', [
-                $prefecture,
-                $city,
-                $station,
+                $stamp->prefecture,
+                $stamp->city,
+                $stamp->station,
                 $stamp,
             ]);
         }
+        return redirect('home');
     }
 
     /**

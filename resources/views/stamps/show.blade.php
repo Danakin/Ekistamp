@@ -24,7 +24,7 @@
         <h2 class="font-bold">Comments</h2>
         <div class="text-right mb-6">
             <a class="px-4 py-2 bg-ekigreen text-white rounded-md"
-                href="{{ route('stamps.comments.create', [$prefecture, $city, $station, $stamp]) }}">New
+                href="{{ route('comments.create', ['stamps', $stamp]) }}">New
                 Comment</a>
         </div>
         @include('comments.index', ['comments' => $stamp->comments()->orderBy('created_at', 'desc')->get()])
