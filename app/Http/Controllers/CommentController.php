@@ -126,35 +126,10 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function editPost(Post $post, Comment $comment)
+    public function edit(Comment $comment)
     {
-        //
         return view('comments.edit', [
-            'id' => $post->id,
             'comment' => $comment,
-            'route' => 'posts.comments.update',
-            'args' => [$post, $comment],
-            'type' => Post::class,
-            'title' => $comment->title,
-            'description' => $comment->description,
-        ]);
-    }
-    public function editStamp(
-        Prefecture $prefecture,
-        City $city,
-        Station $station,
-        Stamp $stamp,
-        Comment $comment
-    ) {
-        //
-        return view('comments.edit', [
-            'id' => $stamp->id,
-            'comment' => $comment,
-            'route' => 'stamps.comments.update',
-            'args' => [$prefecture, $city, $station, $stamp, $comment],
-            'type' => Stamp::class,
-            'title' => $comment->title,
-            'description' => $comment->description,
         ]);
     }
 
@@ -165,9 +140,8 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function updatePost(Request $request, Post $post, Comment $comment)
+    public function update(Request $request, Comment $comment)
     {
-        //
         if (
             auth()
                 ->user()
@@ -180,44 +154,19 @@ class CommentController extends Controller
             $comment->title = $request->title;
             $comment->description = $request->description;
             $comment->save();
-            return redirect()->route('posts.show', [
-                $post,
-                "title" => $comment->title,
-                "description" => $comment->description,
-            ]);
-        }
-    }
 
-    public function updateStamp(
-        Request $request,
-        Prefecture $prefecture,
-        City $city,
-        Station $station,
-        Stamp $stamp,
-        Comment $comment
-    ) {
-        //
-        if (
-            auth()
-                ->user()
-                ->can('update', $comment)
-        ) {
-            $request->validate([
-                'title' => 'required|string',
-                'description' => 'required|string',
-            ]);
-
-            $comment->title = $request->title;
-            $comment->description = $request->description;
-            $comment->save();
-            return redirect()->route('stamps.show', [
-                $prefecture,
-                $city,
-                $station,
-                $stamp,
-                "title" => $comment->title,
-                "description" => $comment->description,
-            ]);
+            if ($comment->commentable_type === Post::class) {
+                return redirect()->route('posts.show', $comment->commentable);
+            } elseif ($comment->commentable_type === Stamp::class) {
+                return redirect()->route('stamps.show', [
+                    $comment->commentable->prefecture_id,
+                    $comment->commentable->city_id,
+                    $comment->commentable->station_id,
+                    $comment->commentable->id,
+                ]);
+            } else {
+                return redirect()->route('home');
+            }
         }
     }
 

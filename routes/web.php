@@ -93,6 +93,14 @@ Route::group(
     }
 );
 
+Route::get('/comments/{comment}/edit', [
+    CommentController::class,
+    'edit',
+])->name('comments.edit');
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name(
+    'comments.update'
+);
+
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
