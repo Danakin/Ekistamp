@@ -35,4 +35,9 @@ class Stamp extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

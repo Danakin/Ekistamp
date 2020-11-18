@@ -35,4 +35,9 @@ class Post extends Model
         }
         return Str::limit($this->description, 294) . ' (...)';
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
