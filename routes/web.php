@@ -93,23 +93,6 @@ Route::group(
     }
 );
 
-Route::get('/comments/{model}/{id}/create', [
-    CommentController::class,
-    'create',
-])
-    ->name('comments.create')
-    ->where('model', '(posts|stamps)');
-Route::post('/comments/{model}/{id}', [CommentController::class, 'store'])
-    ->name('comments.store')
-    ->where('model', '(posts|stamps)');
-Route::get('/comments/{comment}/edit', [
-    CommentController::class,
-    'edit',
-])->name('comments.edit');
-Route::put('/comments/{comment}', [CommentController::class, 'update'])->name(
-    'comments.update'
-);
-
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
@@ -178,5 +161,20 @@ Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
                 ->name('update')
                 ->middleware('auth:sanctum');
         }
+    );
+});
+
+Route::group(['prefix' => 'comments', 'as' => 'comments.'], function () {
+    Route::get('/{model}/{id}/create', [CommentController::class, 'create'])
+        ->name('create')
+        ->where('model', '(posts|stamps)');
+    Route::post('/{model}/{id}', [CommentController::class, 'store'])
+        ->name('store')
+        ->where('model', '(posts|stamps)');
+    Route::get('/{comment}/edit', [CommentController::class, 'edit'])->name(
+        'edit'
+    );
+    Route::put('/{comment}', [CommentController::class, 'update'])->name(
+        'update'
     );
 });
