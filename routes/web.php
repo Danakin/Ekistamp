@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StampController;
+use App\Http\Controllers\CommentController;
 use App\Http\Livewire\Stamps;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +96,21 @@ Route::group(
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');
+    Route::group(
+        [
+            'prefix' => '/{post:slug}/comments',
+            'as' => 'comments.',
+        ],
+        function () {
+            Route::get('/create', [
+                CommentController::class,
+                'createPost',
+            ])->name('create');
+            Route::post('/', [CommentController::class, 'storePost'])
+                ->name('store')
+                ->middleware('auth:sanctum');
+        }
+    );
 });
 
 Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
@@ -116,4 +132,17 @@ Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
         StampController::class,
         'show',
     ])->name('show');
+
+    Route::group(
+        [
+            'prefix' => '/{prefecture}/{city}/{station}/{stamp}/comments',
+            'as' => 'comments.',
+        ],
+        function () {
+            Route::get('/create', [
+                CommentController::class,
+                'createStamp',
+            ])->name('create');
+        }
+    );
 });

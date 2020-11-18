@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -22,9 +23,15 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPost(Post $post)
     {
         //
+        return view('comments.create', [
+            'id' => $post->id,
+            'route' => 'posts.comments.store',
+            'args' => $post,
+            'type' => Post::class,
+        ]);
     }
 
     /**
@@ -33,9 +40,25 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePost(Request $request, Post $post)
     {
         //
+        if (
+            auth()
+                ->user()
+                ->can('create', Comment::class)
+        ) {
+            $request->validate([
+                'commentable_id' => 'required|integer',
+                'commentable_type' => 'required|string',
+                'title' => 'required|string',
+                'description' => 'required|string',
+            ]);
+            $request['user_id'] = auth()->user()->id;
+
+            $comment = Comment::create($request->all());
+            return redirect()->route('posts.show', $post);
+        }
     }
 
     /**
