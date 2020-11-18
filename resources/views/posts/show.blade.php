@@ -17,19 +17,7 @@
             <a class="px-4 py-2 bg-ekigreen text-white rounded-md"
                 href="{{ route('posts.comments.create', $post) }}">New Comment</a>
         </div>
-        @foreach ($post->comments()->orderBy('created_at', 'desc')->get() as $comment)
-        <article class="flex flex-col py-3 border-t-2 border-ekigreen">
-            <h2 class="font-bold">{{ $comment->title }}</h2>
-            <p class="text-right">{{ $comment->user->name }}</p>
-            <p>{{ $comment->description }}</p>
-            @can('update', $comment)
-            <div class="text-right">
-                <a href="{{ route('posts.comments.edit', [$post, $comment]) }}">Edit
-                    Comment</a>
-            </div>
-            @endcan
-        </article>
-        @endforeach
+        @include('comments.index', ['comments' => $post->comments()->orderBy('created_at', 'desc')->get()])
     </div>
 </article>
 @endsection

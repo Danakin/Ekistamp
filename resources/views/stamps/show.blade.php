@@ -27,19 +27,7 @@
                 href="{{ route('stamps.comments.create', [$prefecture, $city, $station, $stamp]) }}">New
                 Comment</a>
         </div>
-        @foreach ($stamp->comments()->orderBy('created_at', 'desc')->get() as $comment)
-        <article class="flex flex-col py-3 border-t-2 border-ekigreen">
-            <h2 class="font-bold">{{ $comment->title }}</h2>
-            <p class="text-right">{{ $comment->user->name }}</p>
-            <p>{{ $comment->description }}</p>
-            @can('update', $comment)
-            <div class="text-right">
-                <a href="{{ route('stamps.comments.edit', [$prefecture, $city, $station, $stamp, $comment]) }}">Edit
-                    Comment</a>
-            </div>
-            @endcan
-        </article>
-        @endforeach
+        @include('comments.index', ['comments' => $stamp->comments()->orderBy('created_at', 'desc')->get()])
     </div>
 </section>
 @endsection
