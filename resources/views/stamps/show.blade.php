@@ -32,6 +32,12 @@
             <h2 class="font-bold">{{ $comment->title }}</h2>
             <p class="text-right">{{ $comment->user->name }}</p>
             <p>{{ $comment->description }}</p>
+            @can('update', $comment)
+            <div class="text-right">
+                <a href="{{ route('stamps.comments.edit', [$prefecture, $city, $station, $stamp, $comment]) }}">Edit
+                    Comment</a>
+            </div>
+            @endcan
         </article>
         @endforeach
     </div>

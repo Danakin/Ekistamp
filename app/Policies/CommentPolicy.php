@@ -58,6 +58,14 @@ class CommentPolicy
     public function update(User $user, Comment $comment)
     {
         //
+        if (
+            $user->role === 'admin' ||
+            $user->role === 'moderator' ||
+            $comment->user_id === $user->id
+        ) {
+            return true;
+        }
+        return false;
     }
 
     /**

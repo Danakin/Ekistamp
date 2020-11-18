@@ -109,6 +109,13 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
             Route::post('/', [CommentController::class, 'storePost'])
                 ->name('store')
                 ->middleware('auth:sanctum');
+            Route::get('/{comment}/edit', [
+                CommentController::class,
+                'editPost',
+            ])->name('edit');
+            Route::put('/{comment}', [CommentController::class, 'updatePost'])
+                ->name('update')
+                ->middleware('auth:sanctum');
         }
     );
 });
@@ -145,6 +152,13 @@ Route::group(['prefix' => 'stamps', 'as' => 'stamps.'], function () {
             ])->name('create');
             Route::post('/', [CommentController::class, 'storeStamp'])
                 ->name('store')
+                ->middleware('auth:sanctum');
+            Route::get('/{comment}/edit', [
+                CommentController::class,
+                'editStamp',
+            ])->name('edit');
+            Route::put('/{comment}', [CommentController::class, 'updateStamp'])
+                ->name('update')
                 ->middleware('auth:sanctum');
         }
     );
