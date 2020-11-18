@@ -39,6 +39,10 @@ class Index extends Component
             ->first();
 
         $this->cities = $this->selected_prefecture->cities;
+        $this->selected_city_id = 0;
+        $this->stations = [];
+        $this->selected_station_id = 0;
+        $this->stamps = [];
     }
 
     public function load_stations()
@@ -50,6 +54,8 @@ class Index extends Component
             ->first();
 
         $this->stations = $this->selected_city->stations;
+        $this->selected_station_id = 0;
+        $this->stamps = [];
     }
 
     public function load_stamps()

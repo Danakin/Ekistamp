@@ -36,5 +36,7 @@
         </div>
     </a>
     @endforeach
+    {{ $stamps->links() }}
 </section>
+
 @endsection

@@ -18,7 +18,14 @@ class StampController extends Controller
      */
     public function index()
     {
-        $stamps = auth()->user()->stamps;
+        $stamps = auth()
+            ->user()
+            ->stamps()
+            ->orderBy('prefecture_id')
+            ->orderBy('city_id')
+            ->orderBy('station_id')
+            ->orderBy('id')
+            ->paginate(50);
         return view('stamps.index', compact('stamps'));
     }
 

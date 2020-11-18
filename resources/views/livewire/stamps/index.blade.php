@@ -35,16 +35,26 @@
     </section>
 
     @if(intval($selected_prefecture_id) > 0 && intval($selected_city_id) > 0 && intval($selected_station_id) > 0)
-    <a href="{{ route('stamps.create', [$selected_prefecture_id, $selected_city_id, $selected_station_id]) }}"
-        class="px-4 py-2 bg-ekigreen rounded-md">Submit a new Stamp</a>
+    <section class="flex justify-end">
+        <a href="{{ route('stamps.create', [$selected_prefecture_id, $selected_city_id, $selected_station_id]) }}"
+            class="px-4 py-2 bg-ekigreen text-white rounded-md">Submit a new Stamp</a>
+
+    </section>
     @endif
 
     @if($stamps)
     @if(count($stamps) > 0)
     <section class="mt-4 flex flex-col">
         @foreach($stamps as $stamp)
-        <a
-            href="{{ route('stamps.show', [$selected_prefecture, $selected_city, $selected_station, $stamp]) }}">{{ $stamp->name_eng }}</a>
+        <a href="{{ route('stamps.show', [$selected_prefecture, $selected_city, $selected_station, $stamp]) }}"
+            class="flex flex-col md:flex-row justify-center items-center {{ $loop->index % 2 === 0 ? 'bg-gray-200' : '' }}">
+            <div class="w-full md:w-2/12">
+                <img src="{{ Storage::url($stamp->image) }}" alt="Stamp Preview" class="max-h-32 md:max-h-24">
+            </div>
+            <div class="w-full md:w-10/12">
+                {{ $stamp->name_eng }}
+            </div>
+        </a>
         @endforeach
     </section>
     @else
