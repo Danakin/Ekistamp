@@ -14,6 +14,7 @@ module.exports = {
             },
             colors: {
                 ekigreen: "#008D00",
+                ekigray: "#F2F2F2",
             },
         },
     },

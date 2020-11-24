@@ -18,7 +18,7 @@
 </nav> --}}
 
 <nav :class="{ 'h-12': !showNav, 'h-auto': showNav }"
-    class="fixed top-0 left-0 right-0 bg-ekigreen flex items-center md:justify-end text-gray-300 z-10">
+    class="fixed top-0 left-0 right-0 bg-ekigreen flex items-center md:justify-end text-ekigray z-10">
     <ul :class="{ 'flex': showNav, 'hidden': !showNav }"
         class="h-full bg-ekigreen md:flex flex-col items-center mt-12 md:mt-0 w-full md:w-auto md:flex-row">
         <a href="{{ route('stamps.index') }}"
