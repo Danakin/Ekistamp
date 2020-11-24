@@ -30,6 +30,9 @@
                 </li>
             </ul>
         </div>
+        <div class="flex flex-col mt-2">
+            <p class="font-semibold">Comments</p>
+        </div>
     </nav>
 
     <div class="hamburger md:hidden right-0 mt-3 mr-3 fixed" :class="{ 'active': showNav }" @click="showNav = !showNav">
